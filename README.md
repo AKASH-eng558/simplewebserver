@@ -23,15 +23,14 @@ Testing the webserver.
 
 ## PROGRAM:
 ```
-from http.server import SimpleHTTPRequestHandler, HTTPServer
-
-PORT = 8000
-
-
-HTML_CONTENT = """
-<!DOCTYPE html>
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content = """
 <html>
 <head>
+    <h1='CENTRE'><b>LIST OF PROTOCOLS</b></h1>
+        <h2>NAME:AKASH P<br> 
+            REF NO: 24900264</h2>
+
     <title>TCP/IP Protocol Suite</title>
 </head>
 <body>
@@ -47,20 +46,17 @@ HTML_CONTENT = """
 </body>
 </html>
 """
-
-
-class CustomHandler(SimpleHTTPRequestHandler):
+class myhandler(BaseHTTPRequestHandler):
     def do_GET(self):
+        print("request received")
         self.send_response(200)
-        self.send_header("Content-type", "text/html")
+        self.send_header('content-type', 'text/html; charset=utf-8')
         self.end_headers()
-        self.wfile.write(HTML_CONTENT.encode("utf-8"))
-
-
-if __name__ == "__main__":
-    server = HTTPServer(("", PORT), CustomHandler)
-    print(f"Server started at http://localhost:{PORT}")
-    server.serve_forever()
+        self.wfile.write(content.encode())
+server_address = ('',8000)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
+httpd.serve_forever()
 ```
 
 
