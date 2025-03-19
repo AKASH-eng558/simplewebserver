@@ -1,20 +1,24 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 content = """
 <html>
-    <body>
-        <h1='CENTRE'><b>MY LAPTOP CONFIGURATION</b></h1>
+<head>
+    <h1='CENTRE'><b>LIST OF PROTOCOLS</b></h1>
         <h2>NAME:AKASH P<br> 
             REF NO: 24900264</h2>
-        <ol>
-        <li>Device name	AK</li>
-        <li>Processor	AMD Ryzen 5 5600H with Radeon Graphics  3.30 GHz</li>         
-        <li>Installed RAM	16.0 GB (15.3 GB usable)</li>
-        <li>Device ID	9818DC8B-5A92-4B05-BB6D-52B14B013ABD</li>
-        <li>Product ID	00342-42692-33914-AAOEM</li>
-        <li>System type	64-bit operating system, x64-based processor</li>
-        <li>Pen and touch	No pen or touch input is available for this display</li>
-            
-    </body>
+
+    <title>TCP/IP Protocol Suite</title>
+</head>
+<body>
+    <h1>TCP/IP Protocol Suite</h1>
+    <ul>
+        <li>HTTP</li>
+        <li>FTP</li>
+        <li>SMTP</li>
+        <li>DNS</li>
+        <li>Telnet</li>
+        <li>SNMP</li>
+    </ul>
+</body>
 </html>
 """
 class myhandler(BaseHTTPRequestHandler):

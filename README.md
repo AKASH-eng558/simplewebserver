@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date:18-03-2025
+## Date:19-03-2025
 
 ## AIM:
 To develop a simple webserver to serve html pages and display the list of protocols in TCP/IP Protocol Suite.
@@ -23,42 +23,51 @@ Testing the webserver.
 
 ## PROGRAM:
 ```
-from http.server import HTTPServer, BaseHTTPRequestHandler
-content = """
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+PORT = 8000
+
+
+HTML_CONTENT = """
+<!DOCTYPE html>
 <html>
-    <body>
-        <h1='CENTRE'><b>MY LAPTOP CONFIGURATION</b></h1>
-        <h2>NAME:AKASH P<br> 
-            REF NO: 24900264</h2>
-        <ol>
-        <li>Device name	AK</li>
-        <li>Processor	AMD Ryzen 5 5600H with Radeon Graphics  3.30 GHz</li>         
-        <li>Installed RAM	16.0 GB (15.3 GB usable)</li>
-        <li>Device ID	9818DC8B-5A92-4B05-BB6D-52B14B013ABD</li>
-        <li>Product ID	00342-42692-33914-AAOEM</li>
-        <li>System type	64-bit operating system, x64-based processor</li>
-        <li>Pen and touch	No pen or touch input is available for this display</li>
-            
-    </body>
+<head>
+    <title>TCP/IP Protocol Suite</title>
+</head>
+<body>
+    <h1>TCP/IP Protocol Suite</h1>
+    <ul>
+        <li>HTTP</li>
+        <li>FTP</li>
+        <li>SMTP</li>
+        <li>DNS</li>
+        <li>Telnet</li>
+        <li>SNMP</li>
+    </ul>
+</body>
 </html>
 """
-class myhandler(BaseHTTPRequestHandler):
+
+
+class CustomHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        print("request received")
         self.send_response(200)
-        self.send_header('content-type', 'text/html; charset=utf-8')
+        self.send_header("Content-type", "text/html")
         self.end_headers()
-        self.wfile.write(content.encode())
-server_address = ('',8000)
-httpd = HTTPServer(server_address,myhandler)
-print("my webserver is running...")
-httpd.serve_forever()
+        self.wfile.write(HTML_CONTENT.encode("utf-8"))
+
+
+if __name__ == "__main__":
+    server = HTTPServer(("", PORT), CustomHandler)
+    print(f"Server started at http://localhost:{PORT}")
+    server.serve_forever()
 ```
 
 
 ## OUTPUT:
-![alt text](<Screenshot (1).png>)
-![alt text](<Screenshot (2).png>)
+![alt text](<Screenshot (5).png>)
+![alt text](<Screenshot (4).png>)
+
 
 
 ## RESULT:
